@@ -7,16 +7,22 @@ import {HttpTestService} from './http-test.service';
 })
 export class AppComponent implements OnInit{
   getData:string = 'app';
-
+  postDataString:string = 'POst Data';
   constructor(private httpTestService:HttpTestService){}
 
   ngOnInit(){
 
   }
 
-  getHttpData(){
+  getHttpData1(){
   	this.httpTestService.getHttpData().subscribe(
   			data=>this.getData=data.ip,error=>alert(error),()=>console.log('finished')
   		);
+  }
+
+  postHttpData(){
+  		this.httpTestService.postData().subscribe(
+  			data=>this.postDataString=JSON.stringify(data),error=>alert(error),()=>console.log('finished')
+  		);	
   }
 }
