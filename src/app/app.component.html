@@ -1,4 +1,13 @@
 <button (click)="getHttpData1()">Get Http Data</button><br>
-<p>Get Data: {{getData}}</p>
+<!-- <p>Get Data: {{getData}}</p> -->
+<table>
+	<tr *ngFor="let g of getData">
+		<td>{{g.name}}</td>
+		<td>{{g.email}}</td>
+	</tr>
+</table>
 <button (click)="postHttpData()">Post Http Data</button><br>
 <p>Post Data : {{postDataString}}</p>
+
+<button (click)="goToProductDetails(1,'fahad')">Check Param</button>
+<router-outlet></router-outlet>
