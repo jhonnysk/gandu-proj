@@ -9,10 +9,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent} from './app.component';
 import { HttpTestService } from './http-test.service';
 import { DetailComponent } from './detail/detail.component';
-
+import { MyTeamComponent } from './my-team/my-team.component';
 import * as $ from 'jquery';
 import { LandingComponentComponent } from './landing-component/landing-component.component';
-import { MyTeamComponent } from './my-team/my-team.component';
+
 // import { MyDialogComponent } from './my-dialog/my-dialog.component';
 
 @NgModule({

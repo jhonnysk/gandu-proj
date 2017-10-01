@@ -5,6 +5,7 @@ import { Router,ActivatedRoute,NavigationEnd }   from '@angular/router';
 import {TestClass} from './test-class';
 
 import { WOW } from 'wowjs/dist/wow.min';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -27,24 +28,16 @@ export class AppComponent implements OnInit {
 
   ngOnInit(){
 
-     new WOW().init();
-      $(function () {
-            $("#mdb-lightbox-ui").load("mdb-addons/mdb-lightbox-ui.html");
-        });
-        
-        // Material Select Initialization
-        $(document).ready(function() {
-            (<any>$('.mdb-select')).material_select();
-        });
+    
   }
  ngAfterViewInit(){
    
 
-   (<any>$(".button-collapse")).sideNav();
-        var el = document.querySelector('.custom-scrollbar');
-        // Ps.initialize(el);
-        var el = document.querySelector('.custom-scrollbar');
-        // Ps.initialize(el);  
+   // (<any>$(".button-collapse")).sideNav();
+   //      var el = document.querySelector('.custom-scrollbar');
+   //      // Ps.initialize(el);
+   //      var el = document.querySelector('.custom-scrollbar');
+   //      // Ps.initialize(el);  
   }
 
   getHttpData1(){
