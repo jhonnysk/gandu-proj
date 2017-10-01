@@ -18,10 +18,17 @@ export class HttpTestService {
 
   }
 
-  getHttpData():Observable<TestClass[]>{
-  	// this.url="http://ip.jsontest.com/";
-    this.url="http://172.22.1.36:3000/api/getData"
-  	return this._htttp.get(this.url).map((res:Response)=><TestClass[]>res.json().articleList)
+  // getHttpData():Observable<TestClass[]>{
+  // 	// this.url="http://ip.jsontest.com/";
+  //   this.url="http://172.22.1.36:3000/api/getData"
+  // 	return this._htttp.get(this.url).map((res:Response)=><TestClass[]>res.json().articleList)
+  //   .do(data=>console.log(JSON.stringify(data)));
+  // }
+
+  getHttpData2(){
+    // this.url="http://ip.jsontest.com/";
+    this.url="http://127.0.0.1:3000/api/getData"
+    return this._htttp.get(this.url).map((res:Response)=>res.json())
     .do(data=>console.log(JSON.stringify(data)));
   }
 
@@ -43,5 +50,11 @@ export class HttpTestService {
      this.params=params;
    });
    return this.params;
+  }
+
+  getImageFromServer(){
+    this.url='http://127.0.0.1:3000/api/getImage';
+    return this._htttp.get(this.url).map((res:Response)=>res.json());
+
   }
 }

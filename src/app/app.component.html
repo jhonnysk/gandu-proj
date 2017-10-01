@@ -1,13 +1,63 @@
-<button (click)="getHttpData1()">Get Http Data</button><br>
-<!-- <p>Get Data: {{getData}}</p> -->
-<table>
-	<tr *ngFor="let g of getData">
-		<td>{{g.name}}</td>
-		<td>{{g.email}}</td>
-	</tr>
-</table>
-<button (click)="postHttpData()">Post Http Data</button><br>
-<p>Post Data : {{postDataString}}</p>
+<div>
+    <div>
+            <header>
 
-<button (click)="goToProductDetails(1,'fahad')">Check Param</button>
-<router-outlet></router-outlet>
+            <!-- Navbar -->
+            <nav class="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar">
+                <div class="container">
+                    <a class="navbar-brand waves-effect waves-light" href="#">Navbar</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                        <ul class="navbar-nav mr-auto smooth-scroll">
+                            <li class="nav-item">
+                                <a class="nav-link waves-effect waves-light" 
+                                routerLink="/landing">Home <span class="sr-only">(current)</span></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link waves-effect waves-light" href="#rooms" data-offset="100">Rooms</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link waves-effect waves-light" href="#booknow" data-offset="100">Book Now</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link waves-effect waves-light" href="#contact" data-offset="100">Contact</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link waves-effect waves-light" href="#information" data-offset="100">Info</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link waves-effect waves-light" href="#directions" data-offset="100">Help</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link waves-effect waves-light" routerLink="/team" data-offset="100">Menu1</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link waves-effect waves-light" href="#directions" data-offset="100">Menu2</a>
+                            </li>
+                        </ul>
+                        <!-- Social Icon  -->
+                        <ul class="navbar-nav nav-flex-icons">
+                            <li class="nav-item">
+                                <a class="nav-link waves-effect waves-light"><i class="fa fa-facebook"></i></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link waves-effect waves-light"><i class="fa fa-twitter"></i></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link waves-effect waves-light"><i class="fa fa-instagram"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
+            
+
+        </header>
+
+        
+    </div>
+</div>
+ <router-outlet></router-outlet>
