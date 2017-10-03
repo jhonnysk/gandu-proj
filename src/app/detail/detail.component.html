@@ -1,9 +1,4 @@
-<!-- <p>
-  detail works!
-  id:{{id}}
-  name:{{name}}
-</p>
- -->
+
  <div id="myModal" class="modal">
   <span class="close" (click)="closeModal()">&times;</span>
       
@@ -15,13 +10,6 @@
        
 </div> 
 
-<!--Main Navigation-->
-<!-- <div *ngFor="let img of imageFromServer" class="col-md-4">
-    <img src={{img.img}} class="rounded-circle z-depth-1 img-fluid">
-</div> -->
-
-<!--Main Navigation-->            
-<!--Section: Blog v.4-->
 <section class="section section-blog-fw pt-5 mt-4 pb-3">
 
    
@@ -40,125 +28,24 @@
             </div>
         </div>
     </div>
-  
-
     <hr class="mb-5 mt-4">
-
 </section>
-<!--Section: Blog v.4-->
-<!-- ////////////////////////////// -->
-    <!--Grid row-->
-<!--     <div class="row text-center">
 
-        <div class="col-md-2 mb-r" *ngFor="let img of imageFromServer">
-            
-            <div class="testimonial">
-                <div class="avatar">
-                    <img src={{img.img}} class="rounded-circle z-depth-1 img-fluid">
-                </div>
-                
-                <h4 class="mb-3"></h4>
-                <h6 class="mb-3 font-bold grey-text">{{img.caption}}</h6>
-                
-            </div>
-        </div>
-        
-    </div> -->
-    <!--Grid row-->
-<!--Section: Testimonials v.3-->
-                      <!--Section: Testimonials v.4-->
-<!--Section: Testimonials v.4-->   <!--Section heading-->   
-    <div class="row">
-
-        <!--Carousel Wrapper-->
-        <div id="multi-item-example" class="carousel testimonial-carousel slide carousel-multi-item wow  col-md-12 col-lg-12" data-ride="carousel" data-interval="false">
-
-            <!--Controls-->
-            <div class="controls-top">
-                <a class="btn-floating light-blue darken-4" href="#multi-item-example" data-slide="prev"><i class="fa fa-chevron-left"></i></a>
-                <a class="btn-floating light-blue darken-4" href="#multi-item-example" data-slide="next"><i class="fa fa-chevron-right"></i></a>
-            </div>
-            <!--Controls-->
-
-            <!--Indicators-->
- <!--            <ol class="carousel-indicators">
-                <li data-target="#multi-item-example" data-slide-to="0" class="active light-blue darken-4"></li>
-                <li data-target="#multi-item-example" *ngFor="let img of carusels;let i = index" [attr.data-index]="i" data-slide-to="i" class="light-blue darken-4" 
-                ></li>
-                <li data-target="#multi-item-example" data-slide-to="2" class="light-blue darken-4"></li>
-            </ol> -->
-            <!--Indicators-->
-
-            <!--Slides-->
-            <div class="carousel-inner" role="listbox">
-
-                <!--First slide-->
-                <div class="carousel-item active">
-                    <!--Grid column-->
-                    <div class="col-md-4" *ngFor="let img of firstSlide">
-
-                        <div class="testimonial">
-                            <!--Avatar-->
-                            <div class="avatar">
-                                <img src={{img.img}} style="max-width: 100%;">
-                            </div>
-                            <!--Content-->
-                            <h4>Anna Deynah</h4>
-                            <h6 class="blue-text font-bold">{{img.caption}}</h6>
-                        </div>
-
-                    </div>
-                    <!--Grid column-->
-
-
-                </div>
-                <!--First slide-->
-
-                <!--Second slide-->
-                <div class="carousel-item" *ngFor="let caru of carusels">
-                    <!--Grid column-->
-                    <div class="col-md-4 clearfix d-none d-md-block" *ngFor="let img of caru">
-
-                        <div class="testimonial" >
-                            <!--Avatar-->
-                            <div class="avatar">
-                                <img src={{img.img}} style="max-width: 100%;">
-                            </div>
-                            <!--Content-->
-                            <h4>Blake Dabney</h4>
-                            <h6 class="blue-text font-bold">{{img.caption}}</h6>
-                        </div>
-
-                    </div>
-                    <!--Grid column-->
-
-                    <!--Grid column-->
-                  <!--   <div class="col-md-4 clearfix d-none d-md-block">
-                        <div class="testimonial">
-                            <div class="avatar">
-                                <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20(6).jpg" class="rounded-circle img-fluid">
-                            </div>
-                            <h4>Andrea Clay</h4>
-                            <h6 class="blue-text font-bold">Front-end developer</h6>
-                            <p><i class="fa fa-quote-left"></i> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod eos id officiis hic tenetur quae.</p>
-                            <div class="grey-text">
-                                <i class="fa fa-star"> </i>
-                                <i class="fa fa-star"> </i>
-                                <i class="fa fa-star"> </i>
-                                <i class="fa fa-star"> </i>
-                                <i class="fa fa-star"> </i>
-                            </div>
-                        </div>
-                    </div> -->
-                    <!--Grid column-->
-
-                </div>
-            </div>
-        </div>
-        <!--Carousel Wrapper-->
-
-    </div>
 <!-- //////////////////////////////// -->
+<div class="col-md-12">
+    <div class="card">
+        <h3 class="card-header primary-color white-text">Gallary</h3>
+        <div class="card-body row" style="height: 500px;overflow-y: auto;">
+             <div *ngFor="let img of this.imageFromServer;let i=index" class="col-md-3">
+                <img src={{img.src}} (click)="open(i)" style="max-width:100%;cursor: pointer;">
+                <h5 class="indigo-text"><strong>{{img.caption1}}</strong></h5>
+                <hr class="mb-5 mt-4">
+             </div>
+
+        </div>
+    </div>    
+</div>
+
 <table class="table table-bordered">
     <thead>
         <th>Single</th>
@@ -207,10 +94,12 @@
 
 <button type="button" class="btn btn-elegant btn-sm"
                         (click)="uploader.uploadAll()" [disabled]="!uploader.getNotUploadedItems().length">Upload all
-                </button>         
+                </button>  
+
+ asdasdasdasdasdasdasd   
+<mdb-image-modal [modalImages]="imagesBasic" type="no-margin"></mdb-image-modal>
+                   
 
 
-<!-- <div class="row">
-    <mdb-image-modal [modalImages]="imagesBasic" type="no-margin"></mdb-image-modal>
-</div>
-         -->
+
+        

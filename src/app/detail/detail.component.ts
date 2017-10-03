@@ -5,6 +5,8 @@ import { Router,ActivatedRoute,NavigationEnd } from '@angular/router';
 import { FileUploader } from 'ng2-file-upload';
 
 import { DomSanitizer } from '@angular/platform-browser';
+import { Lightbox } from 'angular2-lightbox';
+
 
 import { WOW } from 'wowjs/dist/wow.min';
 const URL = 'http://127.0.0.1:3000/api';
@@ -20,17 +22,7 @@ export class DetailComponent implements OnInit {
 	id: number;
   private sub: any;
   name:string;
-imagesBasic = [
-          { img: "https://mdbootstrap.com/img/Photos/Horizontal/Nature/12-col/img%20(117).jpg", thumb: "https://mdbootstrap.com/img/Photos/Horizontal/Nature/12-col/img%20(117).jpg", description: "Image 1" },
-          { img: "https://mdbootstrap.com/img/Photos/Horizontal/Nature/12-col/img%20(98).jpg", thumb: "https://mdbootstrap.com/img/Photos/Horizontal/Nature/12-col/img%20(98).jpg", description: "Image 2" },
-          { img: "https://mdbootstrap.com/img/Photos/Horizontal/Nature/12-col/img%20(131).jpg", thumb: "https://mdbootstrap.com/img/Photos/Horizontal/Nature/12-col/img%20(131).jpg", description: "Image 3" },
-          { img: "https://mdbootstrap.com/img/Photos/Horizontal/Nature/12-col/img%20(123).jpg", thumb: "https://mdbootstrap.com/img/Photos/Horizontal/Nature/12-col/img%20(123).jpg", description: "Image 4" },
-          { img: "https://mdbootstrap.com/img/Photos/Horizontal/Nature/12-col/img%20(118).jpg", thumb: "https://mdbootstrap.com/img/Photos/Horizontal/Nature/12-col/img%20(118).jpg", description: 'Image 5' },
-          { img: "https://mdbootstrap.com/img/Photos/Horizontal/Nature/12-col/img%20(128).jpg", thumb: "https://mdbootstrap.com/img/Photos/Horizontal/Nature/12-col/img%20(128).jpg", description: 'Image 6' },
-          { img: "https://mdbootstrap.com/img/Photos/Horizontal/Nature/12-col/img%20(132).jpg", thumb: "https://mdbootstrap.com/img/Photos/Horizontal/Nature/12-col/img%20(132).jpg", description: 'Image 7' },
-          { img: "https://mdbootstrap.com/img/Photos/Horizontal/Nature/12-col/img%20(115).jpg", thumb: "https://mdbootstrap.com/img/Photos/Horizontal/Nature/12-col/img%20(115).jpg", description: 'Image 8' },
-          { img: "https://mdbootstrap.com/img/Photos/Horizontal/Nature/12-col/img%20(133).jpg", thumb: "https://mdbootstrap.com/img/Photos/Horizontal/Nature/12-col/img%20(133).jpg", description: 'Image 9' }
-    ];
+
   public uploader:FileUploader = new FileUploader({url: URL});
 
   localImageUrl=[];
@@ -39,7 +31,8 @@ imagesBasic = [
   firstSlide=[];
   carusels=[];
 
-  constructor(private httpTestService:HttpTestService, private router:Router,private route:ActivatedRoute,private sanitizer:DomSanitizer) {
+  constructor(private httpTestService:HttpTestService, private router:Router,private route:ActivatedRoute,private sanitizer:DomSanitizer,
+              private _lightbox: Lightbox) {
 
     router.events.subscribe((e) => {
         if (e instanceof NavigationEnd) {
@@ -63,26 +56,33 @@ imagesBasic = [
       var count=0;
     this.httpTestService.getImageFromServer().subscribe(
       images=>{
-        this.imageFromServer=images;
+         // this.imageFromServer=images;
+        for(var i=0;i<images.length;i++){
+          var obj={'src':images[i].img,'caption1':images[i].caption};
+          this.imageFromServer.push(obj);
+        }
         // console.log(this.imageFromServer);
         
-        for(var i=0;i<3;i++){
-          var obj={'img':this.imageFromServer[i].img,'caption':this.imageFromServer[i].caption};
-          this.firstSlide.push(obj);
-          count++;
-        }
+        // for(var i=0;i<3;i++){
+        //   var obj={'img':this.imageFromServer[i].img,'caption':this.imageFromServer[i].caption};
+        //   this.firstSlide.push(obj);
+        //   count++;
+        // }
 
-        for(var i=0;i<(this.imageFromServer.length/3)-1;i++){
+        // for(var i=0;i<Math.ceil((this.imageFromServer.length/3))-1;i++){
           
-          var slides=[];
-
-          for(var j=0;j<3;j++){
-            var obj={'img':this.imageFromServer[count].img,'caption':this.imageFromServer[count].caption};
-            slides.push(obj);
-            count++;
-          }
-          this.carusels.push(slides);
-        }
+        //   var slides=[];
+        //     for(var j=0;j<3;j++){
+        //       if(this.imageFromServer[count]){
+        //         var obj={'img':this.imageFromServer[count].img,'caption':this.imageFromServer[count].caption};
+        //         slides.push(obj);
+        //         count++;  
+        //       }
+              
+        //     }            
+          
+        //   this.carusels.push(slides);
+        // }
 
       },error=>alert(error),()=>console.log('finished')
       );
@@ -114,9 +114,13 @@ imagesBasic = [
     this.hasAnotherDropZoneOver = e;
   }
 
-      openModal(imgSrc){
-     modal.style.display = "block";
-     this.modalImgSrc=imgSrc;
+  open(index: number): void {
+    // open lightbox
+    this._lightbox.open(this.imageFromServer, index);
+  }
+  openModal(imgSrc){
+    modal.style.display = "block";
+    this.modalImgSrc=imgSrc;
   }
   closeModal(){
     modal.style.display = "none";

@@ -24,6 +24,7 @@
         "css/bootstrap.min.css",
         "css/mdb.min.css",
         "css/compiled.min.css",
+        "../node_modules/angular2-lightbox/lightbox.css",
         "styles.css"     
       ],
       "scripts": [
