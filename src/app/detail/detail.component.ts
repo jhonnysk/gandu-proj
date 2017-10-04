@@ -10,7 +10,6 @@ import { Lightbox } from 'angular2-lightbox';
 
 import { WOW } from 'wowjs/dist/wow.min';
 const URL = 'http://127.0.0.1:3000/api';
-var modal;
 
 @Component({
   selector: 'app-detail',
@@ -32,20 +31,7 @@ export class DetailComponent implements OnInit {
   carusels=[];
 
   constructor(private httpTestService:HttpTestService, private router:Router,private route:ActivatedRoute,private sanitizer:DomSanitizer,
-              private _lightbox: Lightbox) {
-
-    router.events.subscribe((e) => {
-        if (e instanceof NavigationEnd) {
-          console.log(e.url);
-          if(e.url==="/detail"){
-            $('.hostel-lp .navbar').css('background-color', "#26a69a");
-          }
-
-        }
-      });
-
-
-   }
+              private _lightbox: Lightbox) {}
 
   ngOnInit() {  	
      new WOW().init();
@@ -100,7 +86,6 @@ export class DetailComponent implements OnInit {
   }
 
   ngAfterViewInit(){
-   modal = document.getElementById('myModal');
   }
 
   public hasBaseDropZoneOver:boolean = false;
@@ -118,12 +103,5 @@ export class DetailComponent implements OnInit {
     // open lightbox
     this._lightbox.open(this.imageFromServer, index);
   }
-  openModal(imgSrc){
-    modal.style.display = "block";
-    this.modalImgSrc=imgSrc;
-  }
-  closeModal(){
-    modal.style.display = "none";
-  }
-
+  
 }

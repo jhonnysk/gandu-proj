@@ -10,7 +10,7 @@ export class MyTeamComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-	 $('.hostel-lp .navbar').css('background-color', '#114861');
+	 
   }
 
 }

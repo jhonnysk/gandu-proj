@@ -10,19 +10,7 @@ import { WOW } from 'wowjs/dist/wow.min';
 })
 export class LandingComponentComponent implements OnInit {
 
-  constructor(private router:Router,private route:ActivatedRoute) {
-
-  router.events.subscribe((e) => {
-      if (e instanceof NavigationEnd) {
-        console.log(e.url);
-        if(e.url==="/landing"){
-          $('.hostel-lp .navbar').css('background-color', "");
-        }
-         window.scrollTo(0, 0)
-      }
-    });
-
-   }
+  constructor(private router:Router,private route:ActivatedRoute) { }
 
   ngOnInit() {
      new WOW().init();
