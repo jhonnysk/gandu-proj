@@ -14,6 +14,8 @@ export class HttpTestService {
  url:string;
   params:any;
 
+  apiUrl="http://127.0.0.1:3000";
+
   constructor(private _htttp:Http, private route:ActivatedRoute) { 
 
   }
@@ -53,8 +55,11 @@ export class HttpTestService {
   }
 
   getImageFromServer(){
-    this.url='http://127.0.0.1:3000/api/getImage';
+    this.url=this.apiUrl+'/api/getImage';
     return this._htttp.get(this.url).map((res:Response)=>res.json());
 
+  }
+  getApiUrl(){
+    return this.apiUrl;
   }
 }

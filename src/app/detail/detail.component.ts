@@ -9,7 +9,7 @@ import { Lightbox } from 'angular2-lightbox';
 
 
 import { WOW } from 'wowjs/dist/wow.min';
-const URL = 'http://127.0.0.1:3000/api';
+// const URL = 'http://127.0.0.1:3000/api';
 
 @Component({
   selector: 'app-detail',
@@ -22,7 +22,7 @@ export class DetailComponent implements OnInit {
   private sub: any;
   name:string;
 
-  public uploader:FileUploader = new FileUploader({url: URL});
+  public uploader:FileUploader ;
 
   localImageUrl=[];
   imageFromServer=[];
@@ -31,7 +31,11 @@ export class DetailComponent implements OnInit {
   carusels=[];
 
   constructor(private httpTestService:HttpTestService, private router:Router,private route:ActivatedRoute,private sanitizer:DomSanitizer,
-              private _lightbox: Lightbox) {}
+              private _lightbox: Lightbox) {
+    console.log(this.httpTestService.getApiUrl());
+
+    this.uploader= new FileUploader({url: this.httpTestService.getApiUrl()+'/api'});
+  }
 
   ngOnInit() {  	
      new WOW().init();
