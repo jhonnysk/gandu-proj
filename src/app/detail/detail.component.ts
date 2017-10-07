@@ -32,8 +32,6 @@ export class DetailComponent implements OnInit {
 
   constructor(private httpTestService:HttpTestService, private router:Router,private route:ActivatedRoute,private sanitizer:DomSanitizer,
               private _lightbox: Lightbox) {
-    console.log(this.httpTestService.getApiUrl());
-
     this.uploader= new FileUploader({url: this.httpTestService.getApiUrl()+'/api'});
   }
 
@@ -46,9 +44,10 @@ export class DetailComponent implements OnInit {
       var count=0;
     this.httpTestService.getImageFromServer().subscribe(
       images=>{
+        
          // this.imageFromServer=images;
         for(var i=0;i<images.length;i++){
-          var obj={'src':images[i].img,'caption1':images[i].caption};
+          var obj={_id:images[i]._id,'src':images[i].img,'caption1':images[i].caption};
           this.imageFromServer.push(obj);
         }
         // console.log(this.imageFromServer);
@@ -106,6 +105,17 @@ export class DetailComponent implements OnInit {
   open(index: number): void {
     // open lightbox
     this._lightbox.open(this.imageFromServer, index);
+  }
+
+  deleteImage(imgId,imgSrc,index:number){
+    imgSrc=imgSrc.substring(imgSrc.indexOf('uploads')-1);
+    this.httpTestService.deleteImageServer(imgId,imgSrc).subscribe(
+      data=>{
+        if(data.Delete){
+          this.imageFromServer.splice(index,1);
+        }
+      },error=>console.log(error),()=>console.log("finished")
+      );
   }
   
 }

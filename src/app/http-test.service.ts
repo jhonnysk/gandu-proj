@@ -8,6 +8,9 @@ import { ActivatedRoute } from '@angular/router';
 
 import {TestClass} from './test-class';
 
+// const headers=new Headers();
+// headers.append('Content-Type','application/x-www-form-urlencoded');
+
 @Injectable()
 export class HttpTestService {
 
@@ -15,6 +18,8 @@ export class HttpTestService {
   params:any;
 
   apiUrl="http://127.0.0.1:3000";
+
+  headers = new Headers({'Content-Type': 'application/json'});
 
   constructor(private _htttp:Http, private route:ActivatedRoute) { 
 
@@ -39,10 +44,7 @@ export class HttpTestService {
   	this.url="http://validate.jsontest.com/";
   	var json=JSON.stringify({var1:'test1',var2:3});
   	var params='json=' + json;
-  	var headers=new Headers();
-  	headers.append('Content-Type','application/x-www-form-urlencoded');
-
-  	return this._htttp.post(this.url,params,{headers:headers}).map(res=>res.json());
+  	return this._htttp.post(this.url,params,{headers:this.headers}).map(res=>res.json());
   }
 
   paramCheck(route){
@@ -61,5 +63,12 @@ export class HttpTestService {
   }
   getApiUrl(){
     return this.apiUrl;
+  }
+
+  deleteImageServer(imgId,imgSrc){
+    let imgObj={imgId:imgId,imgSrc:imgSrc};
+    this.url=this.apiUrl+'/api/deleteImage';   
+    var a='imgObj:'+JSON.stringify(imgObj);
+    return this._htttp.post(this.url,JSON.stringify({imgObj: imgObj}),{headers:this.headers}).map(res=>res.json());
   }
 }
